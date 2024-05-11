@@ -1,21 +1,33 @@
 import { Component } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { Observable } from 'rxjs';
+
 import { Wine } from '../model/wine';
-import { MatTableModule } from '@angular/material/table'
+import { WinesService } from '../serices/wines.service';
 
 @Component({
   selector: 'app-wines',
   standalone: true,
-  imports: [MatTableModule],
+  imports: [
+    MatTableModule,
+    MatCardModule,
+    MatToolbarModule],
   templateUrl: './wines.component.html',
   styleUrl: './wines.component.scss',
 
 })
 export class WinesComponent {
 
-  wines: Wine[] = [
-    {_id: '1', name: 'Rutini', type: 'Tinto', grape: 'Malbec', url: ''}
-  ];
-
+  wines$: Observable<Wine[]>;
   displayedColumns = ['name','type','grape'];
+
+  constructor(private winesService: WinesService) {
+
+    this.wines$ =  this.winesService.list();
+  }
+
+
 
 }
