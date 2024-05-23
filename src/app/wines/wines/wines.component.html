@@ -7,21 +7,27 @@
 
       <!-- Name Column -->
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Nome </th>
-        <td mat-cell *matCellDef="let wines"> {{ wines.wine.name }} </td>
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let wines">
+          <mat-card class="card">
+            <mat-card-header>
+              <mat-card-title-group>
+                <mat-card-title >{{ wines.wine.name }}</mat-card-title>
+                <mat-card-subtitle >{{ wines.wine.type }} - {{ wines.wine.grape }}</mat-card-subtitle>
+                <mat-card-subtitle >{{ wines.wine.year }}</mat-card-subtitle>
+                <mat-card-title >{{ wines.wine.rating }}</mat-card-title>
+                <a [href]="wines.wine.url">
+                  <img mat-card-xl-image [src]="wines.wine.imageName" >
+                </a>
+
+              </mat-card-title-group>
+            </mat-card-header>
+          </mat-card>
+        </td>
+
+
       </ng-container>
 
-      <!-- Tipo Column -->
-      <ng-container matColumnDef="type">
-        <th mat-header-cell *matHeaderCellDef> Tipo </th>
-        <td mat-cell *matCellDef="let wines"> {{ wines.wine.type }} </td>
-      </ng-container>
-
-      <!-- Uva Column -->
-      <ng-container matColumnDef="grape">
-        <th mat-header-cell *matHeaderCellDef> Uva </th>
-        <td mat-cell *matCellDef="let wines"> {{ wines.wine.grape }} </td>
-      </ng-container>
 
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

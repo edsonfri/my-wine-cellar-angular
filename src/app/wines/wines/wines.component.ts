@@ -21,7 +21,7 @@ import { WinesService } from '../serices/wines.service';
 export class WinesComponent {
 
   wines$: Observable<Wine[]>;
-  displayedColumns = ['name','type','grape'];
+  displayedColumns = ['name'];
 
   constructor(private winesService: WinesService) {
 
